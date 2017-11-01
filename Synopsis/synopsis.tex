@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							                           
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4,12pt]{article}
+
+%--- Generic packages ---%
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[babel=true]{csquotes}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+%--- Page structure ---%
+
+\usepackage{fancyheadings}
+
+\topmargin -1.5 cm
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 17 cm
+\setlength{\headwidth}{\textwidth}
+\textheight 24 cm
+\pagestyle{fancy}
+\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl Course}}
+\chead[\fancyplain{}{{\sl }}]{\fancyplain{}{{Subject}}}
+\rhead[\fancyplain{}{}]{\fancyplain{}{Genevray Aurelien \& Vincent Kylian}}
+\lfoot{\fancyplain{}{}}
+\cfoot{\fancyplain{}{}}
+\cfoot{\thepage }
+\rfoot{\fancyplain{}{}}
+
+%--- Coding zone style ---%
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{listings}             
+\usepackage{textcomp}
+
+\lstset{upquote=true,
+	columns=flexible,
+	keepspaces=true,
+	breaklines,
+	breakindent=0pt,
+	basicstyle=\ttfamily,
+	commentstyle=\color[rgb]{0,0.6,0},
+	language=Scilab,
+	alsoletter=\),
+}
+
+\lstset{classoffset=0,
+	keywordstyle=\color{violet!75},
+	deletekeywords={zeros,disp},
+	classoffset=1,
+	keywordstyle=\color{cyan},
+	morekeywords={zeros,disp},
+}
+
+\lstset{extendedchars=true,
+	literate={0}{{\color{brown!75}0}}1 
+	{1}{{\color{brown!75}1}}1 
+	{2}{{\color{brown!75}2}}1 
+	{3}{{\color{brown!75}3}}1 
+	{4}{{\color{brown!75}4}}1 
+	{5}{{\color{brown!75}5}}1 
+	{6}{{\color{brown!75}6}}1 
+	{7}{{\color{brown!75}7}}1 
+	{8}{{\color{brown!75}8}}1 
+	{9}{{\color{brown!75}9}}1 
+	{(}{{\color{blue!50}(}}1 
+	{)}{{\color{blue!50})}}1 
+	{[}{{\color{blue!50}[}}1 
+	{]}{{\color{blue!50}]}}1
+	{-}{{\color{gray}-}}1
+	{+}{{\color{gray}+}}1
+	{=}{{\color{gray}=}}1
+	{:}{{\color{orange!50!yellow}:}}1
+	{é}{{\'e}}1 
+	{è}{{\`e}}1 
+	{à}{{\`a}}1 
+	{ç}{{\c{c}}}1 
+	{œ}{{\oe}}1 
+	{ù}{{\`u}}1
+	{É}{{\'E}}1 
+	{È}{{\`E}}1 
+	{À}{{\`A}}1 
+	{Ç}{{\c{C}}}1 
+	{Œ}{{\OE}}1 
+	{Ê}{{\^E}}1
+	{ê}{{\^e}}1 
+	{î}{{\^i}}1 
+	{ô}{{\^o}}1 
+	{û}{{\^u}}1 
+}
+
+%--- Math shortcuts ---%
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\ub}{\mathbf{u}}
+
+%--- Correction ---%
+
+\usepackage{framed}
+\usepackage{ifthen}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\newcounter{Nbquestion}
+
+\newcommand*\question{%
+	\stepcounter{Nbquestion}%
+	\textbf{Question \theNbquestion. }}
+
+\definecolor{shadecolor}{gray}{0.80}
+
+%--- Questions style ---%
+
+\mdfsetup{leftmargin=12pt}
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+\tikzset{
+	warningsymbol/.style={
+		rectangle,draw=red,
+		fill=white,scale=1,
+		overlay}}
+\global\mdfdefinestyle{exampledefault}{
+	hidealllines=true,leftline=true,
+	innerrightmargin=0.0em,
+	innerleftmargin=0.3em,
+	leftmargin=0.0em,
+	linecolor=red,
+	backgroundcolor=orange!20,
+	middlelinewidth=4pt,
+	innertopmargin=\topskip,
+}
+
+\global\mdfdefinestyle{answer}{
+	hidealllines=true,leftline=true,
+	innerrightmargin=0.0em,
+	innerleftmargin=0.3em,
+	leftmargin=0.0em,
+	linecolor=green,
+	backgroundcolor=white,
+	middlelinewidth=4pt,
+	innertopmargin=\topskip,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							               HEADING       
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\textbf{02456 Deep Learning\\Fully Convolutional DenseNets for Semantic Segmentation}}
+\author{
+	\begin{tabular}{cc}
+		\textsc{Genevray Aurelien} & \textsc{Vincent Kylian} \\
+		s172625 & s172623\\
+	\end{tabular}}
+\date{\small \today}
+
+\makeatletter
+\def\thetitle{\@title}
+\def\theauthor{\@author}
+\def\thedate{\@date}
+\makeatother 
+
+\usepackage{etoolbox}
+\usepackage{titling}
+\setlength{\droptitle}{-7em}
+
+\setlength{\parindent}{1cm}
+
+\makeatletter
+% bug patch about closing parenthesis from http://tex.stackexchange.com/q/69472
+\patchcmd{\lsthk@SelectCharTable}{%
+	\lst@ifbreaklines\lst@Def{`)}{\lst@breakProcessOther)}\fi}{}{}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							DOCUMENT          
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\maketitle
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 						                  	PART 1
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Background and Motivation}
+	
+	Image recognition and segmentation have been very active field for the past years, due to deep convolutional neural networks development and emerging applications. Among these possible utilizations one can find self driving cars (ability to follow the road, read the signs and detect hazards), satellite imagery processing (reconstruct roads, lakes, buildings map using the satellite photography system) or even medical imaging treatment (segment the different organs or intern organ parts to detect abnormalities or quantify changes in follow-up studies).
+	
+	The \textit{Convolutional Neural Networks} have driven many major advances in these fields and more recently \textit{DenseNets} (Densely Connected Networks) have shown very interesting results, improving the training ability and thus the overall network accuracy \cite{segmentation}. In 2016, this architecture was applied to semantic image segmentation using a special U-shaped network including densely connected convolutional blocks with skip connections between them \cite{tiramisu}. This model achieved state of the art with a number of trainable parameters relatively low compared to previous solutions.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 						                  	PART 2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Milestones}
+	\begin{itemize}
+		\item Reproduce DenseNet architecture and results as in \textit{"The One Hundred Layers Tiramisu"} \ref{tiramisu}
+		\item Train the network on another datasets than \textit{CamVid} or \textit{Gatech} used in the original paper. Datasets considered : \href{http://davischallenge.org/}{DAVIS: Densely Annotated VIdeo Segmentation}, 
+		\item XXXXXX Last objective
+	\end{itemize}
+	
+	\begin{thebibliography}{9}
+		
+		\bibitem{tiramisu}
+		Simon Jegou, Michal Drozdzal, David Vazquez, Adriana Romero and Yoshua Bengio,
+		\textit{The One Hundred Layers Tiramisu: Fully Convolutional DenseNets for Semantic Segmentation}.
+		
+		\bibitem{segmentation}
+		Jonathan Long, Evan Shelhamer and Trevor Darrell,
+		\textit{Fully Convolutional Networks for Semantic Segmentation}
+		
+	\end{thebibliography}
+\end{document}
+
+% Fin du document LaTeX

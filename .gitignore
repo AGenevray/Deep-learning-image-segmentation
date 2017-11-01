@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Tex synopsis
+Synopsis/*
+!Synopsis/synopsis.tex

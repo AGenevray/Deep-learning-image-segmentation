@@ -206,9 +206,9 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Milestones}
 	\begin{itemize}
-		\item Reproduce DenseNet architecture and results as in \textit{"The One Hundred Layers Tiramisu"} \ref{tiramisu}
+		\item Reproduce DenseNet architecture and results as in \textit{"The One Hundred Layers Tiramisu"} \cite{tiramisu}
 		\item Train the network on another datasets than \textit{CamVid} or \textit{Gatech} used in the original paper. Datasets considered : \href{http://davischallenge.org/}{DAVIS: Densely Annotated VIdeo Segmentation}, 
-		\item XXXXXX Last objective
+		\item On last October 26th, a research paper \cite{capsules-paper} was published by Geoffrey Hinton (Google Brain, one of the fathers of the backpropagation algorithm). This paper presents a new type of neural networks, based on \textit{capsules}, which is claimed to be able to solve some of the current problems of convolutional networks, including for example the influence of rotation and translation of images. According to the paper, these capsules have be shown to outperform classic convolutional networks on the MNIST dataset. Because the paper is so recent, we believe it could be interesting to try to integrate this new type of networks into our implementation. 
 	\end{itemize}
 	
 	\begin{thebibliography}{9}
@@ -220,6 +220,11 @@
 		\bibitem{segmentation}
 		Jonathan Long, Evan Shelhamer and Trevor Darrell,
 		\textit{Fully Convolutional Networks for Semantic Segmentation}
+		
+		\bibitem{capsules-paper}
+		Geoffrey E. Hinton, Sara Sabour, Nicholas Frosst,
+		\textit{Dynamic routing between capsules},
+		\url{https://arxiv.org/pdf/1710.09829.pdf}
 		
 	\end{thebibliography}
 \end{document}

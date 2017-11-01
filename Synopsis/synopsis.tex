@@ -20,12 +20,12 @@
 
 \usepackage{fancyheadings}
 
-\topmargin -1.5 cm
-\oddsidemargin -0.5 cm
-\evensidemargin -0.5 cm
-\textwidth 17 cm
+\topmargin -2.5 cm
+\oddsidemargin -1.5 cm
+\evensidemargin -1.5 cm
+\textwidth 19.5 cm
 \setlength{\headwidth}{\textwidth}
-\textheight 24 cm
+\textheight 25 cm
 \pagestyle{fancy}
 \lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl Course}}
 \chead[\fancyplain{}{{\sl }}]{\fancyplain{}{{Subject}}}
@@ -163,15 +163,14 @@
 \title{\textbf{02456 Deep Learning\\Fully Convolutional DenseNets for Semantic Segmentation}}
 \author{
 	\begin{tabular}{cc}
-		\textsc{Genevray Aurelien} & \textsc{Vincent Kylian} \\
-		s172625 & s172623\\
+		\textsc{Genevray Aurelien (s172625)}, & \textsc{Vincent Kylian (s172623)} \\
 	\end{tabular}}
-\date{\small \today}
+\date{}
 
 \makeatletter
 \def\thetitle{\@title}
 \def\theauthor{\@author}
-\def\thedate{\@date}
+%\def\thedate{\@date}
 \makeatother 
 
 \usepackage{etoolbox}
@@ -191,7 +190,7 @@
 
 \begin{document}
 	\maketitle
-	
+	\vspace{-5em}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 						                  	PART 1
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +198,7 @@
 	
 	Image recognition and segmentation have been very active field for the past years, due to deep convolutional neural networks development and emerging applications. Among these possible utilizations one can find self driving cars (ability to follow the road, read the signs and detect hazards), satellite imagery processing (reconstruct roads, lakes, buildings map using the satellite photography system) or even medical imaging treatment (segment the different organs or intern organ parts to detect abnormalities or quantify changes in follow-up studies).
 	
-	The \textit{Convolutional Neural Networks} have driven many major advances in these fields and more recently \textit{DenseNets} (Densely Connected Networks) have shown very interesting results, improving the training ability and thus the overall network accuracy \cite{segmentation}. In 2016, this architecture was applied to semantic image segmentation using a special U-shaped network including densely connected convolutional blocks with skip connections between them \cite{tiramisu}. This model achieved state of the art with a number of trainable parameters relatively low compared to previous solutions.
+	The \textit{Convolutional Neural Networks} have driven many major advances in these fields and more recently \textit{DenseNets} (Densely Connected Networks) have shown very interesting results, improving the training ability and thus the overall network accuracy \cite{segmentation}. In 2016, this architecture was applied to semantic image segmentation using a special U-shaped network including densely connected convolutional blocks with skip connections between them \cite{tiramisu}. This model achieved state-of-the-art performance with a number of trainable parameters relatively low compared to previous solutions.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 						                  	PART 2
@@ -207,11 +206,11 @@
 	\section{Milestones}
 	\begin{itemize}
 		\item Reproduce DenseNet architecture and results as in \textit{"The One Hundred Layers Tiramisu"} \cite{tiramisu}
-		\item Train the network on another datasets than \textit{CamVid} or \textit{Gatech} used in the original paper. Datasets considered : \href{http://davischallenge.org/}{DAVIS: Densely Annotated VIdeo Segmentation}, 
+		\item Train the network on another datasets than \textit{CamVid} or \textit{Gatech} used in the original paper. Datasets considered : \href{http://davischallenge.org/}{DAVIS: Densely Annotated VIdeo Segmentation}, \href{http://sceneparsing.csail.mit.edu/}{MIT Scene Parsing Benchmark}
 		\item On last October 26th, a research paper \cite{capsules-paper} was published by Geoffrey Hinton (Google Brain, one of the fathers of the backpropagation algorithm). This paper presents a new type of neural networks, based on \textit{capsules}, which is claimed to be able to solve some of the current problems of convolutional networks, including for example the influence of rotation and translation of images. According to the paper, these capsules have be shown to outperform classic convolutional networks on the MNIST dataset. Because the paper is so recent, we believe it could be interesting to try to integrate this new type of networks into our implementation. 
 	\end{itemize}
 	
-	\begin{thebibliography}{9}
+	\begin{thebibliography}{3}
 		
 		\bibitem{tiramisu}
 		Simon Jegou, Michal Drozdzal, David Vazquez, Adriana Romero and Yoshua Bengio,

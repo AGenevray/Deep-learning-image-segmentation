@@ -18,6 +18,33 @@ import os
 import subprocess
 import itertools
 
+## Image retrieval from output probabilities ##
+Sky = [128,128,128]
+Building = [128,0,0]
+Pole = [192,192,128]
+Road_marking = [255,69,0]
+Road = [128,64,128]
+Pavement = [60,40,222]
+Tree = [128,128,0]
+SignSymbol = [192,128,128]
+Fence = [64,64,128]
+Car = [64,0,128]
+Pedestrian = [64,64,0]
+Bicyclist = [0,128,192]
+Unlabelled = [0,0,0]
+
+label_colours = np.array([Sky, Building, Pole, Road, Pavement, Tree, SignSymbol, Fence, Car, Pedestrian, Bicyclist, Unlabelled])
+
+def print_image(image_pl, width, height, num_classes):
+    image_out = np.argmax(image_pl, axis=-1)[0]
+    image = np.full([height, width, 3], num_classes).astype(np.uint8)
+    for c in range(0, num_classes):
+        image[image_out == c] = label_colours[c]
+    plt.imshow(image)
+    plt.show()
+
+
+## Batch generation and data loading ##
 def onehot(label_img, num_classes):
     out = np.zeros((label_img.shape[0], label_img.shape[1], num_classes))
     for c in range(num_classes):
@@ -96,7 +123,7 @@ class batch_generator():
                 x_batch, y_batch = self._batch_init()
                 i = 0
         if i != 0:
-            yield x_batch, y_batch
+            yield i, x_batch, y_batch
 
     def gen_test(self):
         x_batch, y_batch = self._batch_init()
@@ -110,7 +137,7 @@ class batch_generator():
                 x_batch, y_batch = self._batch_init()
                 i = 0
         if i != 0:
-            yield x_batch, y_batch
+            yield i, x_batch, y_batch
             
 
     def gen_train(self):

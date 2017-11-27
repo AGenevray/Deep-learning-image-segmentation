@@ -33,15 +33,39 @@ Pedestrian = [64,64,0]
 Bicyclist = [0,128,192]
 Unlabelled = [0,0,0]
 
+labels = np.array(['Sky', 'Building', 'Pole', 'Road', 'Pavement', 'Tree', 'SignSymbol', 'Fence', 'Car', 'Pedestrian', 'Bicyclist', 'Void'])
 label_colours = np.array([Sky, Building, Pole, Road, Pavement, Tree, SignSymbol, Fence, Car, Pedestrian, Bicyclist, Unlabelled])
 
-def print_image(image_pl, width, height, num_classes):
+def print_image(image_pl, width, height, num_classes, labelled_im):
+    plt.figure(figsize=(12,4))
+    # Plot the obtained image
+    plt.subplot(121)
     image_out = np.argmax(image_pl, axis=-1)[0]
-    image = np.full([height, width, 3], num_classes).astype(np.uint8)
-    for c in range(0, num_classes):
+    image = np.full([height, width, 3], 0).astype(np.uint8)
+    for c in range(num_classes+1):
         image[image_out == c] = label_colours[c]
     plt.imshow(image)
+    plt.title('Output labels')
+    
+    # Plot the labelled image
+    plt.subplot(122)
+    labelled = np.argmax(labelled_im, axis=-1)[0]
+    true_labels = np.full([height, width, 3], 0).astype(np.uint8)
+    for c in range(num_classes+1):
+        true_labels[labelled == c] = label_colours[c]
+    plt.imshow(true_labels)
+    plt.title('Original image labels')
     plt.show()
+    
+    # Plot the labels legend
+    plt.figure(figsize=(12,1))
+    for c in range(num_classes+1):
+        plt.subplot(1, num_classes+1, c+1)
+        plt.axis('off')
+        plt.imshow(np.full([10, 20, 3], label_colours[c]).astype(np.uint8))
+        plt.title(labels[c])
+    plt.show()
+                   
 
 
 ## Batch generation and data loading ##

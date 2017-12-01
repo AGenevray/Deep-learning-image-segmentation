@@ -81,12 +81,20 @@ def image_path_to_label_path(image_path):
     label_path = os.path.join(label_path, image_name)
     return label_path
 
+def random_crop(image, label):
+    # 8 pixels to crop in height
+    # Random up crop between 0 and 8 pixels
+    # Bottom crop will then be 8-(uppder crop) 
+    cp = np.random.randint(0, 8);
+    return image[cp:-(8-cp), :, :], label[cp:-(8-cp), :]
+
 def load_img_and_labels_from_list(list_filenames):
     img = []
     annot_img = []
     for file in list_filenames:
-        img.append(imread(file))
-        annot_img.append(imread(image_path_to_label_path(file)))
+        image, label = random_crop(imread(file), imread(image_path_to_label_path(file)))
+        img.append(image)
+        annot_img.append(label)
     return img, annot_img
 
 class load_data():      
@@ -106,7 +114,7 @@ class load_data():
         
         
 class batch_generator():
-    def __init__(self, data, batch_size=64, num_classes=12,
+    def __init__(self, data, batch_size=5, num_classes=11,
                  num_iterations=5e3, num_features=64, seed=42, val_size=0.1):
         self._train = data.train
         self._test = data.test

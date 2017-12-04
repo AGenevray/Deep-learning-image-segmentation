@@ -66,6 +66,20 @@ def print_image(image_pl, width, height, num_classes, labelled_im):
         plt.title(labels[c])
     plt.show()
                    
+def compute_iou(output, one_hot_labelled, num_classes, width, height):
+    iou = np.zeros((num_classes))
+    class_label = np.argmax(one_hot_labelled, axis=-1)
+    class_output = np.argmax(output, axis=-1)
+    # For all the classes except void
+    for i in range(output.shape[0]):
+        for c in range(num_classes-1):
+            lab_i = np.reshape(class_label[i, :, :], width*height)
+            out_i = np.reshape(class_output[i, :, :], width*height)
+            intersection = np.sum((lab_i == c) & (out_i == c))
+            union = np.sum((lab_i == c) | (out_i == c))
+            iou[c] = iou[c] + (intersection/union if union != 0 else 1)
+    iou = iou/output.shape[1]
+    return iou
 
 
 ## Batch generation and data loading ##

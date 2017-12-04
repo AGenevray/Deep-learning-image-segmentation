@@ -176,7 +176,8 @@ class batch_generator():
         x_batch, y_batch = self._batch_init()
         iteration = 0
         i = 0
-        while True:
+        nb_train_img = len(self._idcs_train)
+        while (iteration <= self._num_iterations):
             # shuffling all batches
             self._shuffle_train()
             for idx in self._idcs_train:
@@ -189,5 +190,3 @@ class batch_generator():
                     x_batch, y_batch = self._batch_init()
                     i = 0
                     iteration += 1
-                    if iteration >= self._num_iterations:
-                        break

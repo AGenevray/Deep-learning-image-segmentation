@@ -78,7 +78,7 @@ def compute_iou(output, one_hot_labelled, num_classes, width, height):
             intersection = np.sum((lab_i == c) & (out_i == c))
             union = np.sum((lab_i == c) | (out_i == c))
             iou[c] = iou[c] + (intersection/union if union != 0 else 1)
-    iou = iou/output.shape[1]
+    iou = iou/output.shape[0]
     return iou
 
 

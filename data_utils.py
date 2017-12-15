@@ -102,6 +102,13 @@ def random_crop(image, label):
     cp = np.random.randint(0, 8);
     return image[cp:-(8-cp), :, :], label[cp:-(8-cp), :]
 
+def random_flip(image, label):
+    do_flip = np.random.randint(0, 2) == 1
+    if do_flip:
+        image = np.fliplr(image)
+        label = np.fliplr(label)
+    return image, label
+
 def load_img_and_labels_from_list(list_filenames):
     img = []
     annot_img = []
@@ -195,8 +202,7 @@ class batch_generator():
             self._shuffle_train()
             for idx in self._idcs_train:
                 # extract data from dict
-                x_batch[i] = self._train[idx]
-                y_batch[i] = onehot(self._train_label[idx], self._num_classes)
+                x_batch[i], y_batch[i] = random_flip(self._train[idx], onehot(self._train_label[idx], self._num_classes))
                 i += 1
                 if i >= self._batch_size:
                     yield x_batch, y_batch

@@ -31,12 +31,12 @@ def color_map(N):
             g = g | (get_bit(id, 2) << 7 - j)
             b = b | (get_bit(id, 3) << 7 - j)
             id = id >> 3
-        colours.append([r, g, b])
         map[color_encode([r, g, b])] = len(colours)
+        colours.append([r, g, b])
         
     void = [224, 224, 192]
+    map[color_encode(void)] = len(colours)
     colours.append(void)
-    map[color_encode(void)] = 0
     
     return colours, map
 
@@ -68,9 +68,8 @@ def split_images():
         os.rename(os.path.join(labels_dir, image_name), os.path.join(dir, paths[id][1], image_name))
         os.rename(os.path.join(images_dir, image_name[:-3] + 'jpg'), os.path.join(dir, paths[id][0], image_name))
 
-labels = np.array(['void', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'potted plant', 'sheep', 'sofa', 'train', 'screen'])
-label_colours, map_colours = np.array(color_map(len(labels)))
-print(label_colours)
+labels = np.array(['background', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'potted plant', 'sheep', 'sofa', 'train', 'screen', 'void'])
+label_colours, map_colours = np.array(color_map(len(labels)-1))
 
 target_height = 448
 target_width = 448
@@ -175,7 +174,6 @@ def load_img_and_labels_from_list(list_filenames):
     img = []
     annot_img = []
     for counter, file in enumerate(list_filenames):
-        print("Load", file, counter)
         image, label = random_crop(imread(file), decode_labels(imread(image_path_to_label_path(file))))
         img.append(image)
         annot_img.append(label)

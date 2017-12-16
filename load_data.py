@@ -5,7 +5,7 @@ class load_data():
     def __init__(self, dataset):
         images_path = os.path.join('data', dataset.DATA_FOLDER)
         repo_name = 'Deep-learning-image-segmentation'
-        branch_name = 'VOC'
+        branch_name = 'master'
 
         if not os.path.exists(images_path):
             url = "https://github.com/AGenevray/" + repo_name + "/archive/" + branch_name + ".zip"

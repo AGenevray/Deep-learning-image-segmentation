@@ -38,9 +38,10 @@ def color_map(N):
 
 LABELS = np.array(['background', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'potted plant', 'sheep', 'sofa', 'train', 'screen', 'void'])
 LABEL_COLOURS, MAP_COLOURS = np.array(color_map(len(LABELS)-1))
-
 NUM_CLASSES = len(LABELS)
 IMAGE_SHAPE = (448, 448, 3)
+WEIGHTS = [1 for l in LABELS]
+WEIGHTS[-1] = 0
 
 DATA_FOLDER = 'VOCdevkit'
 
@@ -62,8 +63,8 @@ def resize(image, label):
         label = new_label
     elif height > target_height:
         diff = (height-target_height)//2
-        image = image[diff:-diff, :, :]
-        label = label[diff:-diff, :]
+        image = image[diff:-diff - (1 if height % 2 == 1 else 0), :, :]
+        label = label[diff:-diff - (1 if height % 2 == 1 else 0), :]
         
         
     if width < target_width:
@@ -87,15 +88,16 @@ def resize(image, label):
         label = new_label
     elif width > target_width:
         diff = (width-target_width)//2
-        image = image[:, diff:-diff, :]
-        label = label[:, diff:-diff]
+        image = image[:, diff:-diff - (1 if width % 2 == 1 else 0), :]
+        label = label[:, diff:-diff - (1 if width % 2 == 1 else 0)]
     
     return image, label    
     
 def load_img_and_labels_from_list(list_filenames):
     img = []
     annot_img = []
-    for file in list_filenames:
+    for i in range(100):
+        file = list_filenames[i]
         image, label = resize(imread(file), decode_labels(imread(image_path_to_label_path(file))))
         img.append(image)
         annot_img.append(label)

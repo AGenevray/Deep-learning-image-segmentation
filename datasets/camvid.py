@@ -25,6 +25,8 @@ LABELS = np.array(['Sky', 'Building', 'Pole', 'Road', 'Pavement', 'Tree', 'SignS
 LABEL_COLOURS = np.array([Sky, Building, Pole, Road, Pavement, Tree, SignSymbol, Fence, Car, Pedestrian, Bicyclist, Unlabelled])
 
 NUM_CLASSES = len(LABELS)
+WEIGHTS = [1 for l in LABELS]
+WEIGHTS[-1] = 0
 IMAGE_SHAPE = (480, 352, 3)
 
 DATA_FOLDER = 'CamVid'

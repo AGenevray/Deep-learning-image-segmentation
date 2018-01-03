@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/ubuntu/trained_nets/trained_network_l3,3,3,3,3_b3"
+all_model_checkpoint_paths: "/home/ubuntu/trained_nets/trained_network_l3,3,3,3,3_b3"
